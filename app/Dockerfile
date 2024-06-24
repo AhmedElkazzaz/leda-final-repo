@@ -53,7 +53,7 @@ RUN staticx main run-exe
 # Runner stage, to copy the executable
 FROM scratch
 
-COPY --from=builder ./workspace/app/dist/run-exe /dist/
+COPY --from=builder /workspace/app/dist/run-exe /dist/
 
 WORKDIR /tmp
 WORKDIR /dist
