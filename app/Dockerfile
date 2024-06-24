@@ -55,10 +55,14 @@ FROM scratch as runner
 
 COPY --from=builder ./workspace/app/dist/run-exe /app
 
+
 WORKDIR /tmp
 
+WORKDIR /dist
 
-ENV PATH="/:$PATH"
+ENV PATH="/dist:$PATH"
+
+
 
 LABEL org.opencontainers.image.source="https://github.com/eclipse-velocitas/vehicle-app-python-template"
 
