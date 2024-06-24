@@ -10,7 +10,7 @@
                 "datapoints": {
                     "required": [
                         {
-                            "path": "Vehicle.Cabin.Seat.Row1.DriverSide.Position",
+                            "path": "Vehicle.Cabin.Seat.Row1.Pos1.Position",
                             "access": "write"
                         },
                         {
