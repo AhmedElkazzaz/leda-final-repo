@@ -20,8 +20,8 @@ ARG TARGETARCH
 
 RUN apt-get update && apt-get install -y python3-dev
 
-COPY ../.velocitas.json /workspace/.velocitas.json
-COPY ./ /workspace/app
+COPY ./.velocitas.json /workspace/.velocitas.json
+COPY ./app /workspace/app
 
 # Remove this installation for Arm64 once staticx has a prebuilt wheel for Arm64
 RUN /bin/bash -c 'set -ex && \
@@ -35,8 +35,8 @@ RUN /bin/bash -c 'set -ex && \
 RUN pip3 install --no-cache-dir pyinstaller==5.9.0 \
     && pip3 install --no-cache-dir patchelf==0.17.0.0 \
     && pip3 install --no-cache-dir staticx \
-    && pip3 install --no-cache-dir -r /workspace/app/requirements.txt \
-    && pip3 install --no-cache-dir -r /workspace/app/requirements-links.txt
+    && pip3 install --no-cache-dir -r ./workspace/app/requirements.txt \
+    && pip3 install --no-cache-dir -r ./workspace/app/requirements-links.txt
 
 WORKDIR /workspace
 
