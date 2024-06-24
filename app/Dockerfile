@@ -53,12 +53,12 @@ RUN staticx main run-exe
 # Runner stage, to copy the executable
 FROM scratch as runner
 
-COPY --from=builder ./workspace/app/dist/run-exe /dist/
+COPY --from=builder ./workspace/app/dist/run-exe /app
 
 WORKDIR /tmp
-WORKDIR /dist
 
-ENV PATH="/dist:$PATH"
+
+ENV PATH="/:$PATH"
 
 LABEL org.opencontainers.image.source="https://github.com/eclipse-velocitas/vehicle-app-python-template"
 
