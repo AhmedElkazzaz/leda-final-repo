@@ -15,7 +15,7 @@
 # syntax=docker/dockerfile:1.2
 
 # Build stage, to create the executable
-FROM --platform=$TARGETPLATFORM ghcr.io/eclipse-velocitas/devcontainer-base-images/python:latest as builder
+FROM --platform=$TARGETPLATFORM ghcr.io/eclipse-velocitas/devcontainer-base-images/python:latest:v0.3 as builder
 ARG TARGETARCH
 
 RUN apt-get update && apt-get install -y python3-dev
@@ -53,7 +53,7 @@ RUN staticx main run-exe
 # Runner stage, to copy the executable
 FROM scratch
 
-COPY --from=builder /workspace/app/dist/run-exe /dist/
+COPY --from=builder ./workspace/app/dist/run-exe /dist/
 
 WORKDIR /tmp
 WORKDIR /dist
