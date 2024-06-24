@@ -44,7 +44,7 @@ RUN velocitas init -v
 
 WORKDIR /workspace/app
 
-RUN pyinstaller --clean -F -s -p src src/main.py
+RUN pyinstaller --clean -F -s src/main.py
 
 WORKDIR /workspace/app/dist
 

@@ -100,7 +100,7 @@ jobs:
           push: false
           outputs: |
             type=oci,dest=./${{ env.APP_NAME }}-oci-${{inputs.platform}}.tar
-          file: ./Dockerfile
+          file: ./app/Dockerfile
           context: .
           platforms: ${{ steps.set_args.outputs.platforms }}
           secrets: |
