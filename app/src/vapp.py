@@ -18,7 +18,6 @@ import json
 import logging
 
 from vehicle import Vehicle  # type: ignore
-
 from velocitas_sdk.util.log import (  # type: ignore
     get_opentelemetry_log_factory,
     get_opentelemetry_log_format,
@@ -51,7 +50,7 @@ class SeatAdjusterApp(VehicleApp):
 
     async def on_start(self):
         """Run when the vehicle app starts"""
-        await self.Vehicle.Cabin.Seat.Row1.DriverSide.Position.subscribe(
+        await self.Vehicle.Cabin.Seat.Row1.Pos1.Position.subscribe(
             self.on_seat_position_changed
         )
 
@@ -60,11 +59,7 @@ class SeatAdjusterApp(VehicleApp):
         await self.publish_event(
             response_topic,
             json.dumps(
-                {
-                    "position": data.get(
-                        self.Vehicle.Cabin.Seat.Row1.DriverSide.Position
-                    ).value
-                }
+                {"position": data.get(self.Vehicle.Cabin.Seat.Row1.Pos1.Position).value}
             ),
         )
 
@@ -80,7 +75,7 @@ class SeatAdjusterApp(VehicleApp):
         position = data["position"]
         if vehicle_speed == 0:
             try:
-                await self.Vehicle.Cabin.Seat.Row1.DriverSide.Position.set(position)
+                await self.Vehicle.Cabin.Seat.Row1.Pos1.Position.set(position)
                 response_data["result"] = {
                     "status": 0,
                     "message": f"Set Seat position to: {position}",
