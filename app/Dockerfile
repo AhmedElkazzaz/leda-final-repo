@@ -20,8 +20,8 @@ ARG TARGETARCH
 
 RUN apt-get update && apt-get install -y python3-dev
 
-COPY ./.velocitas.json /workspace/.velocitas.json
-COPY ./app /workspace/app
+COPY ../.velocitas.json /workspace/.velocitas.json
+COPY ./ /workspace/app
 
 # Remove this installation for Arm64 once staticx has a prebuilt wheel for Arm64
 RUN /bin/bash -c 'set -ex && \
